@@ -2,8 +2,9 @@ import type { Challenge, TokenResponse } from './types';
 import { clearTokens, readAccessToken, readRefreshToken, saveTokens } from './session';
 
 const API_BASE = (
-  process.env.NEXT_PUBLIC_PS_AFFILIATES_API_BASE_URL ||
-  (process.env.NODE_ENV === 'development' ? 'http://localhost:8082/api/v1' : '/api/v1')
+  process.env.NODE_ENV === 'development'
+    ? process.env.NEXT_PUBLIC_PS_AFFILIATES_API_BASE_URL || 'http://localhost:8082/api/v1'
+    : '/api/v1'
 ).replace(/\/+$/, '');
 
 export class SessionChallengeRequiredError extends Error {
